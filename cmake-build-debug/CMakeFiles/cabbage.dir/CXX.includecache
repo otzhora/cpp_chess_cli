@@ -1,0 +1,26 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/main.cpp
+iostream
+-
+src/Board.h
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/src/Board.h
+
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/src/Board.h
+vector
+-
+iostream
+-
+string
+-
+Piece.h
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/src/Piece.h
+
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/src/Piece.h
+

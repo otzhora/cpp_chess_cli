@@ -1,0 +1,3 @@
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/cmake-build-debug/CMakeFiles/cabbage.dir
+C:/Users/Yuriy Rogachev/CLionProjects/cabbage/cmake-build-debug/CMakeFiles/rebuild_cache.dir
