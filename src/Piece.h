@@ -26,6 +26,7 @@ namespace cabbage {
         Color color_;
 
     public:
+        explicit Piece(char piece);
         explicit Piece(Color color, PieceType type);
 
         friend std::ostream& operator<<(std::ostream& os, const Piece& piece);

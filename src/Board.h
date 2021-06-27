@@ -15,6 +15,14 @@
 
 
 namespace cabbage{
+    enum CastlingRights {
+        WhiteShort,
+        WhiteLong,
+        BlackShort,
+        BlackLong
+    };
+
+
     class Field {
     private:
         bool isWhite_;
@@ -37,7 +45,7 @@ namespace cabbage{
     class Coordinate {
     private:
         int row_;
-        char col_;
+        int col_;
     public:
         explicit Coordinate(std::string coordinate);
         Coordinate(int row, char col);
@@ -48,16 +56,26 @@ namespace cabbage{
 
     class Board {
     private:
+        bool turn_;
         std::vector<Field> board_;
+        std::vector<CastlingRights> castling_;
+        int moveCount_;
+        Coordinate *enPassant_;
+        int moves50Rule_;
+
     public:
-        Board();
+        explicit Board(std::string fen);
 
         friend std::ostream& operator<<(std::ostream& os, const Board& board);
 
-        void put_piece(Coordinate coordinate, Piece* piece) {
-            int linearCoordinate = coordinate.getLinearCoordinate();
-            board_[linearCoordinate] = Field(linearCoordinate, piece);
-        }
+        [[nodiscard]] bool turn() const { return turn_; }
+        [[nodiscard]] std::vector<CastlingRights> castling() const { return castling_; }
+        [[nodiscard]] int moveCount() const { return moveCount_; }
+        [[nodiscard]] Coordinate* enPassant() const { return enPassant_; }
+        [[nodiscard]] int moves50Rule() const { return moves50Rule_; }
+
+        void put_piece(Coordinate coordinate, Piece* piece);
+        void put_piece(int row, int col, Piece* piece);
     };
 
 

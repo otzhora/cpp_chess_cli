@@ -39,4 +39,29 @@ namespace cabbage {
         os << std::setw(2) << symbol;
         return os;
     }
+
+    Piece::Piece(char piece) {
+        color_ = isupper(piece) ? Color::White : Color::Black;
+
+        switch(::tolower(piece)) {
+            case 'p':
+                type_ = PieceType::Pawn;
+                break;
+            case 'n':
+                type_ = PieceType::Knight;
+                break;
+            case 'b':
+                type_ = PieceType::Bishop;
+                break;
+            case 'r':
+                type_ = PieceType::Rook;
+                break;
+            case 'q':
+                type_ = PieceType::Queen;
+                break;
+            case 'k':
+                type_ = PieceType::King;
+                break;
+        }
+    }
 }
