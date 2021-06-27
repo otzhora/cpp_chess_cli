@@ -18,37 +18,19 @@ namespace cabbage {
 
     std::ostream &operator<<(std::ostream &os, const Field &field) {
         char symbol;
-        switch (field.piece()) {
-            case Piece::None:
-                symbol = field.isWhite() ? '.' : '*';
-                break;
-            case Piece::Pawn:
-                symbol = field.isWhite() ? 'p' : 'P';
-                break;
-            case Piece::Bishop:
-                symbol = field.isWhite() ? 'b' : 'B';
-                break;
-            case Piece::Knight:
-                symbol = field.isWhite() ? 'n' : 'N';
-                break;
-            case Piece::Rook:
-                symbol = field.isWhite() ? 'r' : 'R';
-                break;
-            case Piece::Queen:
-                symbol = field.isWhite() ? 'q' : 'Q';
-                break;
-            case Piece::King:
-                symbol = field.isWhite() ? 'k' : 'K';
-                break;
-        }
 
-        os << std::setw(2) << symbol;
+        if (field.piece() == nullptr) {
+            symbol = field.isWhite() ? '.' : '*';
+            os << std::setw(2) << symbol;
+        } else {
+            os << std::setw(2) << *field.piece();
+        }
         return os;
     }
 
     Field::Field(int row, int col) {
         isWhite_ = getSquareColor(row, col);
-        piece_ = Piece::None;
+        piece_ = nullptr;
     }
 
     Field::Field(Field *pField) {
@@ -62,7 +44,7 @@ namespace cabbage {
         return *this;
     }
 
-    Field::Field(int row, int col, Piece piece) {
+    Field::Field(int row, int col, Piece *piece) {
         isWhite_ = getSquareColor(row, col);
         piece_ = piece;
     }
@@ -72,10 +54,10 @@ namespace cabbage {
         int col = coordinate - row * BOARD_DIM;
 
         isWhite_ = getSquareColor(row, col);
-        piece_ = Piece::None;
+        piece_ = nullptr;
     }
 
-    Field::Field(int coordinate, Piece piece) {
+    Field::Field(int coordinate, Piece* piece) {
         int row = coordinate / BOARD_DIM;
         int col = coordinate - row * BOARD_DIM;
 
@@ -127,7 +109,7 @@ namespace cabbage {
         col_ = col;
     }
 
-    int Coordinate::getLinearCoordinate() {
+    int Coordinate::getLinearCoordinate() const {
         return row_ * BOARD_DIM + col_;
     }
 }

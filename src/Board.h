@@ -18,19 +18,19 @@ namespace cabbage{
     class Field {
     private:
         bool isWhite_;
-        Piece piece_;
+        Piece* piece_;
     public:
         explicit Field(int coordinate);
-        explicit Field(int coordinate, Piece piece);
+        explicit Field(int coordinate, Piece* piece);
         explicit Field(int row, int col);
-        explicit Field(int row, int col, Piece piece);
+        explicit Field(int row, int col, Piece* piece);
         explicit Field(Field *pField);
 
         Field& operator=(Field *pField);
         friend std::ostream& operator<<(std::ostream& os, const Field& board);
 
-        [[nodiscard]] Piece piece() const { return piece_; }
-        void piece(Piece p) { piece_ = p; }
+        [[nodiscard]] Piece* piece() const { return piece_; }
+        void piece(Piece* p) { piece_ = p; }
         [[nodiscard]] bool isWhite() const { return isWhite_; }
     };
 
@@ -42,7 +42,7 @@ namespace cabbage{
         explicit Coordinate(std::string coordinate);
         Coordinate(int row, char col);
 
-        int getLinearCoordinate();
+        [[nodiscard]] int getLinearCoordinate() const;
     };
 
 
@@ -54,7 +54,7 @@ namespace cabbage{
 
         friend std::ostream& operator<<(std::ostream& os, const Board& board);
 
-        void put_piece(Coordinate coordinate, Piece piece) {
+        void put_piece(Coordinate coordinate, Piece* piece) {
             int linearCoordinate = coordinate.getLinearCoordinate();
             board_[linearCoordinate] = Field(linearCoordinate, piece);
         }

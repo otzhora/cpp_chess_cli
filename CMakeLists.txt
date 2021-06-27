@@ -3,4 +3,4 @@ project(cabbage)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(cabbage main.cpp src/Piece.h src/Board.h src/Board.cpp)
+add_executable(cabbage main.cpp src/Piece.h src/Board.h src/Board.cpp src/Piece.cpp)
